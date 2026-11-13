@@ -993,21 +993,23 @@ detail.addEventListener("touchend",e=>{ if(sx===null) return; const dx=e.changed
   }));
 
   /* 2. platillos */
-  const DISH=[
-   {r:"cacahuacintle",n:"Pozole",svg:`<svg viewBox="0 0 96 72"><path d="M8 34h80c0 20-18 32-40 32S8 54 8 34z" fill="#c4553f"/><ellipse cx="48" cy="34" rx="40" ry="8" fill="#e07a52"/>${[[30,32],[42,30],[54,33],[64,30],[38,36],[58,36]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="4" fill="#fbf3dc"/>`).join("")}<path d="M60 22c6-8 14-10 20-8-6 4-10 10-20 8z" fill="#7cc35a"/></svg>`},
-   {r:"bolita",n:"Tlayuda",svg:`<svg viewBox="0 0 96 72"><ellipse cx="48" cy="40" rx="44" ry="26" fill="#e9c98a"/><ellipse cx="48" cy="40" rx="34" ry="18" fill="#5a2e22"/><path d="M28 36q10-8 20 0t20 0" stroke="#f3ead0" stroke-width="5" fill="none" stroke-linecap="round"/><circle cx="40" cy="46" r="4" fill="#7cc35a"/><circle cx="58" cy="44" r="4" fill="#e85a4a"/></svg>`},
-   {r:"zapalote",n:"Totopos istmeños",svg:`<svg viewBox="0 0 96 72"><circle cx="34" cy="38" r="22" fill="#e9b84a"/><circle cx="62" cy="34" r="22" fill="#f4c95d"/>${[[26,30],[38,44],[30,46],[56,26],[68,40],[62,30]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="2.6" fill="#b88426"/>`).join("")}</svg>`},
-   {r:"palomero",n:"Palomitas",svg:`<svg viewBox="0 0 96 72"><path d="M28 30h40l-6 40H34z" fill="#e85a4a"/><path d="M38 30l2 40M48 30v40M58 30l-2 40" stroke="#fbf3dc" stroke-width="4"/>${[[32,24],[42,18],[52,22],[62,24],[46,28],[38,28],[56,16]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="7" fill="#fbf3dc"/>`).join("")}</svg>`},
-   {r:"azul",n:"Tlacoyos azules y pinole",svg:`<svg viewBox="0 0 96 72"><ellipse cx="40" cy="42" rx="32" ry="16" fill="#2c2f86"/><ellipse cx="40" cy="40" rx="24" ry="9" fill="#7cc35a" opacity=".9"/><circle cx="34" cy="38" r="3" fill="#fbf3dc"/><circle cx="46" cy="40" r="3" fill="#fbf3dc"/><path d="M70 30h18l-3 34H73z" fill="#5a4fa0"/><path d="M70 30h18" stroke="#c9b98d" stroke-width="4"/></svg>`},
-   {r:"jala",n:"Elote gigante",svg:`<svg viewBox="0 0 96 72"><path d="M14 54C10 38 18 26 30 22L82 14c4 4 2 10-2 14L36 56c-8 4-18 4-22-2z" fill="#f4c95d"/><path d="M14 54c8-2 18-10 24-20" stroke="#7cc35a" stroke-width="8" fill="none" stroke-linecap="round"/></svg>`}
+ const DISH=[
+   {r:"cacahuacintle",n:"Pozole",a:"el",pl:0,svg:`<svg viewBox="0 0 96 72"><path d="M8 34h80c0 20-18 32-40 32S8 54 8 34z" fill="#c4553f"/><ellipse cx="48" cy="34" rx="40" ry="8" fill="#e07a52"/>${[[30,32],[42,30],[54,33],[64,30],[38,36],[58,36]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="4" fill="#fbf3dc"/>`).join("")}<path d="M60 22c6-8 14-10 20-8-6 4-10 10-20 8z" fill="#7cc35a"/></svg>`},
+   {r:"bolita",n:"Tlayuda",a:"la",pl:0,svg:`<svg viewBox="0 0 96 72"><ellipse cx="48" cy="40" rx="44" ry="26" fill="#e9c98a"/><ellipse cx="48" cy="40" rx="34" ry="18" fill="#5a2e22"/><path d="M28 36q10-8 20 0t20 0" stroke="#f3ead0" stroke-width="5" fill="none" stroke-linecap="round"/><circle cx="40" cy="46" r="4" fill="#7cc35a"/><circle cx="58" cy="44" r="4" fill="#e85a4a"/></svg>`},
+   {r:"zapalote",n:"Totopos istmeños",a:"los",pl:1,svg:`<svg viewBox="0 0 96 72"><circle cx="34" cy="38" r="22" fill="#e9b84a"/><circle cx="62" cy="34" r="22" fill="#f4c95d"/>${[[26,30],[38,44],[30,46],[56,26],[68,40],[62,30]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="2.6" fill="#b88426"/>`).join("")}</svg>`},
+   {r:"palomero",n:"Palomitas",a:"las",pl:1,svg:`<svg viewBox="0 0 96 72"><path d="M28 30h40l-6 40H34z" fill="#e85a4a"/><path d="M38 30l2 40M48 30v40M58 30l-2 40" stroke="#fbf3dc" stroke-width="4"/>${[[32,24],[42,18],[52,22],[62,24],[46,28],[38,28],[56,16]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="7" fill="#fbf3dc"/>`).join("")}</svg>`},
+   {r:"azul",n:"Tlacoyos azules y pinole",a:"los",pl:1,svg:`<svg viewBox="0 0 96 72"><ellipse cx="40" cy="42" rx="32" ry="16" fill="#2c2f86"/><ellipse cx="40" cy="40" rx="24" ry="9" fill="#7cc35a" opacity=".9"/><circle cx="34" cy="38" r="3" fill="#fbf3dc"/><circle cx="46" cy="40" r="3" fill="#fbf3dc"/><path d="M70 30h18l-3 34H73z" fill="#5a4fa0"/><path d="M70 30h18" stroke="#c9b98d" stroke-width="4"/></svg>`},
+   {r:"jala",n:"Elote gigante",a:"el",pl:0,svg:`<svg viewBox="0 0 96 72"><path d="M14 54C10 38 18 26 30 22L82 14c4 4 2 10-2 14L36 56c-8 4-18 4-22-2z" fill="#f4c95d"/><path d="M14 54c8-2 18-10 24-20" stroke="#7cc35a" stroke-width="8" fill="none" stroke-linecap="round"/></svg>`}
   ];
   const grid=document.getElementById("dishGrid"), dm=document.getElementById("dishMsg");
   DISH.forEach(d=>{ const raza=MAICES.find(m=>m.id===d.r); const b=document.createElement("button"); b.className="dish"; b.setAttribute("aria-pressed","false");
     b.innerHTML=`${d.svg}<b>${d.n}</b><span>Necesita: ${raza.nombre}</span>`;
     b.addEventListener("click",()=>{ const lost=b.getAttribute("aria-pressed")!=="true"; b.setAttribute("aria-pressed",lost); sfx(lost?"lose":"grow");
       const n=grid.querySelectorAll('[aria-pressed="true"]').length;
-      dm.innerHTML = lost ? `Sin <b>${raza.nombre}</b>, ${d.n.toLowerCase()} cambia o desaparece. ${n>1?`Ya perdimos ${n} platillos.`:""} Toca de nuevo para recuperarlo.` : `¡Recuperaste ${d.n.toLowerCase()}! Mientras alguien siembre ${raza.nombre}, seguirá en nuestra mesa.`; });
+      const nom=`${d.a} ${d.n.toLowerCase()}`, pron={el:"lo",la:"la",los:"los",las:"las"}[d.a];
+      dm.innerHTML = lost ? `Sin <b>${raza.nombre}</b>, ${nom} ${d.pl?"cambian o desaparecen":"cambia o desaparece"}. ${n>1?`Ya perdimos ${n} platillos.`:""} Toca de nuevo para recuperar${pron}.` : `¡Recuperaste ${nom}! Mientras alguien siembre ${raza.nombre}, ${d.pl?"seguirán":"seguirá"} en nuestra mesa.`; });
     grid.appendChild(b); });
+
 
   /* 3. ciclo de la semilla */
   const STEPS=[
